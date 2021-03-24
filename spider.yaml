@@ -2,11 +2,11 @@ no_comments: true
 package: res
 
 groups:
-  - path: res/drawables
+  - path: assets/res/drawables
     class_name: AppImages
     package: res
     types: [ .jpg, .png, .webp ]
-  - path: res/svg
+  - path: assets/res/svg
     class_name: AppVectorialImages
     package: res
     types: [ .svg]

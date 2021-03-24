@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:openfoodfacts/AppColors.dart';
-import 'package:openfoodfacts/res/app_icons.dart';
-import 'package:openfoodfacts/res/app_vectorial_images.dart';
+import 'package:openfoodfacts/screens/DetailProduct.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,99 +19,18 @@ class MyApp extends StatelessWidget {
           accentColor: AppColors.yellow,
           appBarTheme: AppBarTheme(
               elevation: 0.0,
+              textTheme: TextTheme(
+                  headline6: Theme.of(context)
+                      .textTheme
+                      .headline6
+                      ?.copyWith(color: AppColors.blue)),
               backgroundColor: AppColors.white,
               titleTextStyle: TextStyle(color: AppColors.blue),
               actionsIconTheme: IconThemeData(color: AppColors.blue)),
           bottomNavigationBarTheme: BottomNavigationBarThemeData(
               selectedItemColor: AppColors.blue,
               unselectedItemColor: AppColors.gray2)),
-      home: EmptyListScreen(),
-    );
-  }
-}
-
-class EmptyListScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Mes scans',
-          style: TextStyle(color: Theme.of(context).primaryColor),
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(AppIcons.barcode),
-            onPressed: () {},
-          )
-        ],
-      ),
-      body: Body(screenHeight: screenHeight),
-    );
-  }
-}
-
-class Body extends StatelessWidget {
-  const Body({
-    Key? key,
-    required this.screenHeight,
-  }) : super(key: key);
-
-  final double screenHeight;
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SvgPicture.asset(AppVectorialImages.appLogo, width: 300, height: 100),
-          SizedBox(height: screenHeight * 0.1),
-          FractionallySizedBox(
-            widthFactor: 0.3,
-            child: Text(
-              'Vous n\'avez pas encore scanné de produit',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: AppColors.blue,
-                height: 1.7,
-                fontSize: 17.0,
-              ),
-            ),
-          ),
-          SizedBox(height: screenHeight * 0.1),
-          TextButton(
-            onPressed: () {
-              print('Clic');
-            },
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'Commencer'.toUpperCase(),
-                ),
-                const SizedBox(width: 20.0),
-                Icon(Icons.arrow_right_alt),
-              ],
-            ),
-            style: OutlinedButton.styleFrom(
-              padding: EdgeInsets.symmetric(
-                vertical: 18.0,
-                horizontal: 25.0,
-              ),
-              primary: AppColors.blue,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(22.0),
-                ),
-              ),
-              backgroundColor: AppColors.yellow,
-            ),
-          ),
-        ],
-      ),
+      home: DetailProduct(),
     );
   }
 }
