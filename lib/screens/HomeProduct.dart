@@ -1,7 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Mountain extends StatelessWidget {
+class Mountain extends StatefulWidget {
+  @override
+  _MountainState createState() => _MountainState();
+}
+
+class _MountainState extends State<Mountain> {
   @override
   Widget build(BuildContext context) {
     var themeData = Theme.of(context);
@@ -113,18 +118,23 @@ class Actions extends StatelessWidget {
   }
 }
 
-class Button extends StatelessWidget {
+class Button extends StatefulWidget {
   final IconData icon;
   final String label;
 
   Button({required this.icon, required this.label});
 
   @override
+  _ButtonState createState() => _ButtonState();
+}
+
+class _ButtonState extends State<Button> {
+  @override
   Widget build(BuildContext context) {
     return InkWell(
       customBorder: const CircleBorder(),
       onTap: () {
-        print('Clic sur $label');
+        print('Clic sur ${widget.label}');
       },
       child: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -132,12 +142,12 @@ class Button extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
-              icon,
+              widget.icon,
               color: Colors.blue,
             ),
             const SizedBox(height: 10.0),
             Text(
-              label.toUpperCase(),
+              widget.label.toUpperCase(),
               style: const TextStyle(color: Colors.blue),
             )
           ],

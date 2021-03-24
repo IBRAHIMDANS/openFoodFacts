@@ -2,17 +2,43 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:openfoodfacts/AppColors.dart';
 import 'package:openfoodfacts/res/app_images.dart';
+import 'package:openfoodfacts/widgets/DynamicDivider.dart';
+import 'package:openfoodfacts/widgets/TabBar.dart';
 
 import '../app_icons.dart';
 
-class DetailProduct extends StatelessWidget {
+class DetailProduct extends StatefulWidget {
+  @override
+  _DetailProductState createState() => _DetailProductState();
+}
+
+class _DetailProductState extends State<DetailProduct> {
   @override
   Widget build(BuildContext context) {
     MediaQueryData query = MediaQuery.of(context);
     double sreenWidth = query.size.width;
     double sreenHeight = query.size.height;
     return Scaffold(
-      body: Column(
+      body: Body(),
+      bottomNavigationBar: TabBarCustom(),
+    );
+  }
+}
+
+class Body extends StatefulWidget {
+  const Body({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image.asset(
@@ -29,8 +55,13 @@ class DetailProduct extends StatelessWidget {
               child: Column(
                 children: [
                   Title(
-                      title: "Petit Pois et carottes", subtitle: "Cassegrain"),
-                  DescriptionProduct()
+                    title: "Petit Pois et carottes",
+                    subtitle: "Cassegrain",
+                    description:
+                        "Petits pois et carottes à l'étuvée avec graniture",
+                  ),
+                  const SizedBox(height: 20.0),
+                  DescriptionProduct(),
                 ],
               ))
         ],
@@ -39,57 +70,115 @@ class DetailProduct extends StatelessWidget {
   }
 }
 
-class Title extends StatelessWidget {
-  final title, subtitle;
+class Title extends StatefulWidget {
+  final title, subtitle, description;
 
-  Title({required this.title, required this.subtitle});
+  Title(
+      {required this.title, required this.subtitle, required this.description});
 
   @override
+  _TitleState createState() => _TitleState();
+}
+
+class _TitleState extends State<Title> {
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      // mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Row(
       children: [
-        Text(title, style: Theme.of(context).textTheme.headline4),
-        Text(subtitle, style: Theme.of(context).textTheme.subtitle1),
+        Expanded(
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(widget.title, style: Theme.of(context).textTheme.headline5),
+              Text(widget.subtitle,
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle1
+                      ?.copyWith(color: Colors.grey)),
+              Text(widget.description,
+                  style: Theme.of(context).textTheme.bodyText2),
+            ],
+          ),
+        ),
+        // Icon(Icons.star, color: Colors.red),
+        // Text('41'),
       ],
     );
   }
 }
 
-class DescriptionProduct extends StatelessWidget {
+class DescriptionProduct extends StatefulWidget {
+  @override
+  _DescriptionProductState createState() => _DescriptionProductState();
+}
+
+class _DescriptionProductState extends State<DescriptionProduct> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: AppColors.gray2,
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Column(
-                  children: [
-                    Text("Nutri-Score"),
-                    Image.asset(AppImages.nutriscoreA),
-                  ],
+      color: AppColors.gray1,
+      child: Column(
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Column(
+                children: [
+                  Text(
+                    "Nutri-Score",
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline5
+                        ?.copyWith(fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 10.0),
+                  Image.asset(
+                    AppImages.nutriscoreA,
+                    width: 100,
+                  ),
+                ],
+              ),
+              DynamicDividerWidget(axis: Axis.horizontal),
+              Column(children: [
+                Text(
+                  "Groupe NOVA",
+                  style: Theme.of(context).textTheme.headline6?.copyWith(
+                        color: AppColors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
-                Divider(height: 20),
-                Column(
-                  children: [
-                    Text("eee"),
-                    Text("lorem ipsum "),
-                  ],
-                )
-              ],
-            ),
-            Column(
-              children: [
-                Text("Eco Score"),
-                Row(
-                  children: [Icon(AppIcons.barcode), Text("lorem")],
-                )
-              ],
-            )
-          ],
-        ));
+                const SizedBox(height: 10.0),
+                Text("Produit alimentaire "),
+              ])
+            ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Eco Score",
+                style: Theme.of(context).textTheme.headline6?.copyWith(
+                      color: AppColors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+              Row(
+                children: [
+                  Icon(AppIcons.ecoscore_d),
+                  Padding(padding: EdgeInsets.only(left: 20.0)),
+                  Text(
+                    "Impact env élévé ",
+                    style: Theme.of(context).textTheme.subtitle2?.copyWith(
+                          color: AppColors.gray3,
+                        ),
+                  ),
+                ],
+              ),
+            ],
+          )
+        ],
+      ),
+    );
   }
 }
