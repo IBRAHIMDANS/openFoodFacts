@@ -47,23 +47,24 @@ class _BodyState extends State<Body> {
             fit: BoxFit.cover,
           ),
           Container(
-              margin: EdgeInsets.all(0.0),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
-              ),
-              child: Column(
-                children: [
-                  Title(
-                    title: "Petit Pois et carottes",
-                    subtitle: "Cassegrain",
-                    description:
-                        "Petits pois et carottes à l'étuvée avec graniture",
-                  ),
-                  const SizedBox(height: 20.0),
-                  DescriptionProduct(),
-                ],
-              ))
+            margin: EdgeInsets.all(0.0),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
+            ),
+            child: Column(
+              children: [
+                Title(
+                  title: "Petit Pois et carottes",
+                  subtitle: "Cassegrain",
+                  description:
+                      "Petits pois et carottes à l'étuvée avec graniture",
+                ),
+                const SizedBox(height: 20.0),
+                DescriptionProduct(),
+              ],
+            ),
+          )
         ],
       ),
     );

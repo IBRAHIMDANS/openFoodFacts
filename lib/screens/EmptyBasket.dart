@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:openfoodfacts/AppColors.dart';
 import 'package:openfoodfacts/app_icons.dart';
 import 'package:openfoodfacts/res/app_vectorial_images.dart';
+import 'package:openfoodfacts/screens/DetailProduct.dart';
 
 class EmptyListScreen extends StatelessWidget {
   @override
@@ -17,8 +18,16 @@ class EmptyListScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            icon: Icon(AppIcons.barcode),
-            onPressed: () {},
+            icon: Icon(
+              AppIcons.barcode,
+              color: AppColors.black,
+            ),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                    builder: (BuildContext context) => DetailProduct()),
+              );
+            },
           )
         ],
       ),

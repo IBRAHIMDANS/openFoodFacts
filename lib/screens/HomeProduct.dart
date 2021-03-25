@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:openfoodfacts/res/app_images.dart';
 
 class Mountain extends StatefulWidget {
   @override
@@ -14,8 +15,8 @@ class _MountainState extends State<Mountain> {
     return Scaffold(
       body: Column(
         children: [
-          Placeholder(
-            fallbackHeight: 290.0,
+          Image.asset(
+            AppImages.pancakes,
           ),
           Body(themeData: themeData),
         ],
