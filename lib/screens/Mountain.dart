@@ -44,7 +44,7 @@ class Body extends StatelessWidget {
         children: [
           Header(themeData: themeData),
           Actions(),
-          Text('Lorem ipsum')
+          Text('Lorem ipsum indo lor')
         ],
       ),
     );
@@ -63,7 +63,7 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        vertical: 40.0,
+        vertical: 30.0,
       ),
       child: Row(
         children: [
@@ -85,7 +85,7 @@ class Header extends StatelessWidget {
             ),
           ),
           Icon(Icons.star, color: Colors.red),
-          Text('41')
+          Text('22')
         ],
       ),
     );
@@ -135,7 +135,7 @@ class _ButtonState extends State<Button> {
     return InkWell(
       customBorder: const CircleBorder(),
       onTap: () {
-        print('Clic sur ${widget.label}');
+        print('${widget.label}');
       },
       child: Padding(
         padding: const EdgeInsets.all(15.0),

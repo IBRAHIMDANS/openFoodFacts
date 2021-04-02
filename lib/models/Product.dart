@@ -35,6 +35,26 @@ class Product {
       this.nutrientLevels,
       this.nutritionFacts,
       this.ingredientsFromPalmOil});
+
+  factory Product.fromJson(Map<String, dynamic> json) {
+    dynamic response = json['response'];
+    return Product(
+      barcode: response['barcode'],
+      name: response['name'],
+      altName: response['altName'],
+      picture: response['pictures']['product'],
+      quantity: response['quantity'],
+      brands: (response['brands'] as List<dynamic>)
+          .map((dynamic e) => e.toString())
+          .toList(),
+      nutriScore: ProductNutriscore.values.firstWhere((dynamic e) =>
+          e.toString() == 'ProductNutriscore.${response['nutriScore']}'),
+      novaScore: ProductNovaScore.values.firstWhere((dynamic e) =>
+          e.toString() == 'ProductNovaScore.group${response['novaScore']}'),
+      ecoScore: ProductEcoScore.values.firstWhere((dynamic e) =>
+          e.toString() == 'ProductEcoScore.${response['ecoScoreGrade']}'),
+    );
+  }
 }
 
 class NutritionFacts {

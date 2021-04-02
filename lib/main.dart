@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:openfoodfacts/AppColors.dart';
-import 'package:openfoodfacts/screens/DetailProduct.dart';
-import 'package:openfoodfacts/screens/EmptyBasket.dart';
-import 'package:openfoodfacts/screens/HomeProduct.dart';
-import 'package:openfoodfacts/widgets/TabBar.dart';
+import 'package:openfoodfacts/screens/HomeScreen.dart';
+import 'package:openfoodfacts/widgets/TabBar.widget.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,7 +20,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Open Foods Facts',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primaryColor: AppColors.blue,
@@ -41,26 +39,7 @@ class _MyAppState extends State<MyApp> {
           bottomNavigationBarTheme: BottomNavigationBarThemeData(
               selectedItemColor: AppColors.blue,
               unselectedItemColor: AppColors.gray2)),
-      home: Stack(
-        children: [
-          Offstage(
-            offstage: currentTab != ProductDetailCurrentTab.sumary,
-            child: EmptyListScreen(),
-          ),
-          Offstage(
-            offstage: currentTab != ProductDetailCurrentTab.info,
-            child: DetailProduct(),
-          ),
-          Offstage(
-            offstage: currentTab != ProductDetailCurrentTab.nutrition,
-            child: Mountain(),
-          ),
-          // Offstage(
-          //   offstage: currentTab != ProductDetailCurrentTab.nutritionalValues,
-          //   child: Text('4'),
-          // ),
-        ],
-      ),
+      home: HomeScreen(),
     );
   }
 }
