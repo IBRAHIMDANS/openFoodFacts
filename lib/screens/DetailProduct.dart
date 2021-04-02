@@ -166,7 +166,7 @@ class _DescriptionProductState extends State<DescriptionProduct> {
               ),
               Row(
                 children: [
-                  Icon(AppIcons.ecoscore_d),
+                  Icon(AppIcons.ecoscoreD),
                   Padding(padding: EdgeInsets.only(left: 20.0)),
                   Text(
                     "Impact env élévé ",
